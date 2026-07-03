@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 import { globalErrorHandler } from "./middlewares/globalErrorHandler.js";
 import { env } from "./config/env.js";
+import clusterRoutes from "./routes/cluster.routes.js";
 
 const app: Application = express();
 
@@ -19,6 +20,8 @@ app.get("/", (_req, res) => {
     message: "Server is running",
   });
 });
+
+app.use("/api/clusters", clusterRoutes);
 
 app.use(globalErrorHandler);
 
